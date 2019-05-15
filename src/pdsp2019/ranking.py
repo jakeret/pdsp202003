@@ -15,28 +15,19 @@ def compute_instrument_ranks(instruments, ch_cl=False):
     if ch_cl:
         # iterate over all the instruments
         for instrument in instruments:
-            rating += lookup_instrument_rating(instrument)
+
+            # do not process insturments that should be ignored
+            if not instrument["ignore"]:
+
+                # skip all the expired instruments
+                if not instrument["expired"]:
+
+                    rating += CurrencyRating[instrument["currency"]].value
 
     else:
         rating = len(instruments) * CurrencyRating.RATING_NON_SWISS.value
 
     return rating
-
-
-def lookup_instrument_rating(instrument):
-    if is_ignored(instrument) or is_expired(instrument):
-        instrument_rating = 0
-    else:
-        instrument_rating = CurrencyRating[instrument["currency"]].value
-    return instrument_rating
-
-
-def is_ignored(instrument):
-    return instrument["ignore"]
-
-
-def is_expired(instrument):
-    return instrument["expired"]
 
 
 def is_restricted(portfolio):
