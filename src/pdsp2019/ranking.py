@@ -5,8 +5,13 @@ def compute_instrument_ranks(instruments, ch_cl=False):
 
     #check if swiss client
     if ch_cl:
+        #iterate over all the instruments
         for instrument in instruments:
+
+            #do not process insturments that should be ignored
             if not instrument["ignore"]:
+
+                #skip all the expired instruments
                 if not instrument["expired"]:
 
                     instr_curr = instrument["currency"]
