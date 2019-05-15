@@ -5,7 +5,7 @@ class CurrencyRating(Enum):
     USD = 7
     EUR = 6
     GDP = 5
-    DEFAULT = 1
+    CHF = 1
     RATING_NON_SWISS = 100
 
 def compute_instrument_ranks(instruments, ch_cl=False):
@@ -22,12 +22,7 @@ def compute_instrument_ranks(instruments, ch_cl=False):
                 # skip all the expired instruments
                 if not instrument["expired"]:
 
-                    try:
-                        rate_factor = CurrencyRating[instrument["currency"]]
-                    except KeyError:
-                        rate_factor = CurrencyRating.DEFAULT
-
-                    rating += rate_factor.value
+                    rating += CurrencyRating[instrument["currency"]].value
 
     else:
         rating = len(instruments) * CurrencyRating.RATING_NON_SWISS.value
