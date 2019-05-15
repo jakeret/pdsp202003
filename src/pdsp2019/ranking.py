@@ -13,7 +13,7 @@ def compute_instrument_ranks(instruments, ch_cl=False):
 
     #check if swiss client
     if ch_cl:
-        # iterate over all the instruments
+
         for instrument in instruments:
             rating += lookup_instrument_rating(instrument)
 
