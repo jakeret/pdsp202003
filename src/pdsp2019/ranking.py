@@ -34,11 +34,18 @@ def compute_instrument_ranks(instruments, ch_cl=False):
 
 
 def is_restricted(portfolio):
-    result = (portfolio["mandator"] == "INTL" or portfolio["mandator"] == "EU") and portfolio[
-        "currency"] != "CHF"
+    result = is_foreign_mandator(portfolio) and is_non_swiss_portfolio(portfolio)
 
     # if not restricted then set the prechecked flag
     if result == False:
         portfolio["prechecked"] = True
 
     return result
+
+
+def is_non_swiss_portfolio(portfolio):
+    return portfolio["currency"] != "CHF"
+
+
+def is_foreign_mandator(portfolio):
+    return (portfolio["mandator"] == "INTL" or portfolio["mandator"] == "EU")
