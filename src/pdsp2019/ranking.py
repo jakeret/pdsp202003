@@ -1,12 +1,12 @@
-RATING_NON_SWISS = 100
-RATING_DEFAULT = 1
-RATING_GDP = 5
-CURRENCY_GDP = 'GBP'
-RATING_EUR = 6
-CURRENCY_EUR = 'EUR'
-RATING_USD = 7
-CURRENCY_USD = 'USD'
+from enum import Enum
 
+
+class CurrencyRating(Enum):
+    USD = 7
+    EUR = 6
+    GDP = 5
+    DEFAULT = 1
+    RATING_NON_SWISS = 100
 
 def compute_instrument_ranks(instruments, ch_cl=False):
     rating = 0
@@ -17,18 +17,15 @@ def compute_instrument_ranks(instruments, ch_cl=False):
             if not instrument["ignore"]:
                 if not instrument["expired"]:
 
-                    instr_curr = instrument["currency"]
+                    try:
+                        rate_factor = CurrencyRating[instrument["currency"]]
+                    except KeyError:
+                        rate_factor = CurrencyRating.DEFAULT
 
-                    if instr_curr == CURRENCY_USD:
-                        rating += RATING_USD
-                    elif instr_curr == CURRENCY_EUR:
-                        rating += RATING_EUR
-                    elif instr_curr == CURRENCY_GDP:
-                        rating += RATING_GDP
-                    else:
-                        rating += RATING_DEFAULT
+                    rating += rate_factor.value
+
     else:
-        rating = len(instruments) * RATING_NON_SWISS
+        rating = len(instruments) * CurrencyRating.RATING_NON_SWISS.value
 
     return rating
 
