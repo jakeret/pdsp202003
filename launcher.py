@@ -47,9 +47,9 @@ ch_pf_instr = [
 ]
 
 #### Instrument ranking for non swiss client
-ranking = compute_instrument_ranks(eu_pf_with_chf_instr, ch_cl=False)
+ranking = compute_instrument_rank_for_non_swiss_clients(eu_pf_with_chf_instr)
 print("Ranking of EU portfolio is", ranking, "and to high for new investments")
 
 #### Instrument ranking for swiss client
-ranking = compute_instrument_ranks(ch_pf_instr, ch_cl=True)
+ranking = compute_instrument_ranks_for_swiss_clients(ch_pf_instr)
 print("Ranking of CH portfolio is", ranking, "and eligible for new investments")

@@ -8,18 +8,16 @@ class CurrencyRating(Enum):
     CHF = 1
     RATING_NON_SWISS = 100
 
-def compute_instrument_ranks(instruments, ch_cl=False):
+
+def compute_instrument_rank_for_non_swiss_clients(instruments):
+    rating = len(instruments) * CurrencyRating.RATING_NON_SWISS.value
+    return rating
+
+
+def compute_instrument_ranks_for_swiss_clients(instruments):
     rating = 0
-
-    #check if swiss client
-    if ch_cl:
-
-        for instrument in instruments:
-            rating += lookup_instrument_rating(instrument)
-
-    else:
-        rating = len(instruments) * CurrencyRating.RATING_NON_SWISS.value
-
+    for instrument in instruments:
+        rating += lookup_instrument_rating(instrument)
     return rating
 
 
