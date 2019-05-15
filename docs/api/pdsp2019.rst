@@ -1,0 +1,22 @@
+pdsp2019 package
+================
+
+Submodules
+----------
+
+pdsp2019.ranking module
+-----------------------
+
+.. automodule:: pdsp2019.ranking
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pdsp2019
+    :members:
+    :undoc-members:
+    :show-inheritance:

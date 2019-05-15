@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
+sphinx = "*"
 
 [packages]
 pdsp2019 = {editable = true,path = "."}
