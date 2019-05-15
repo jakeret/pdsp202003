@@ -1,3 +1,11 @@
+RATING_NON_SWISS = 100
+RATING_DEFAULT = 1
+RATING_GDP = 5
+CURRENCY_GDP = 'GBP'
+RATING_EUR = 6
+CURRENCY_EUR = 'EUR'
+RATING_USD = 7
+CURRENCY_USD = 'USD'
 
 
 def compute_instrument_ranks(instruments, ch_cl=False):
@@ -11,16 +19,16 @@ def compute_instrument_ranks(instruments, ch_cl=False):
 
                     instr_curr = instrument["currency"]
 
-                    if instr_curr == 'USD':
-                        rating += 7
-                    elif instr_curr == 'EUR':
-                        rating += 6
-                    elif instr_curr == 'GBP':
-                        rating += 5
+                    if instr_curr == CURRENCY_USD:
+                        rating += RATING_USD
+                    elif instr_curr == CURRENCY_EUR:
+                        rating += RATING_EUR
+                    elif instr_curr == CURRENCY_GDP:
+                        rating += RATING_GDP
                     else:
-                        rating += 1
+                        rating += RATING_DEFAULT
     else:
-        rating = len(instruments) * 100
+        rating = len(instruments) * RATING_NON_SWISS
 
     return rating
 
