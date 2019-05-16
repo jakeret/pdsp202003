@@ -35,9 +35,13 @@ def verify_eu_portfolio_instruments(eu_pf_with_chf_instr):
 
 def verify_regulatory_definition(ch_pf, eu_pf, eu_pf_with_chf, intl_pf):
     print("International mandator portfolio restricted:", is_restricted(intl_pf))
+    set_unrestricted_portfolio_to_prechecked(intl_pf)
     print("European mandator portfolio restricted:", is_restricted(eu_pf))
+    set_unrestricted_portfolio_to_prechecked(eu_pf)
     print("European mandator portfolio with swiss currency restricted:", is_restricted(eu_pf_with_chf))
+    set_unrestricted_portfolio_to_prechecked(eu_pf_with_chf)
     print("Swiss mandator portfolio restricted:", is_restricted(ch_pf))
+    set_unrestricted_portfolio_to_prechecked(ch_pf)
 
 
 def load_ch_portfolio_instruments():

@@ -38,13 +38,12 @@ def is_expired(instrument):
 
 
 def is_restricted(portfolio):
-    result = is_foreign_mandator(portfolio) and is_non_swiss_portfolio(portfolio)
+    return is_foreign_mandator(portfolio) and is_non_swiss_portfolio(portfolio)
 
-    # if not restricted then set the prechecked flag
-    if result == False:
+
+def set_unrestricted_portfolio_to_prechecked(portfolio):
+    if is_restricted(portfolio) == False:
         portfolio["prechecked"] = True
-
-    return result
 
 
 def is_non_swiss_portfolio(portfolio):
