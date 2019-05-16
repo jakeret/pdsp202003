@@ -72,7 +72,6 @@ class TestIsRestricted:
     def test_is_restricted_non_swiss_mandator_swiss_currency(self):
         portfolio = dict(mandator="EU", currency="CHF")
         assert ranking.is_restricted(portfolio) == False
-        assert True == portfolio["prechecked"]
 
     def test_is_restricted_eu_mandator(self):
         portfolio = dict(mandator="EU", currency="USD")
@@ -82,5 +81,4 @@ class TestIsRestricted:
     def test_is_restricted_eu_mandator_swiss_portfolio(self):
         portfolio = dict(mandator="CH", currency="CHF")
         assert ranking.is_restricted(portfolio) == False
-        assert True == portfolio["prechecked"]
 
