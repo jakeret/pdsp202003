@@ -22,13 +22,13 @@ def verify_eligibility():
 
 
 def verify_ch_portfolio_instruments(ch_pf_instr):
-    ranking = compute_instrument_ranks_for_swiss_clients(ch_pf_instr)
+    ranking = compute_instrument_ranks(ch_pf_instr, ch_cl=True)
     print("Ranking of CH portfolio is", ranking, "and eligible for new investments")
     return ranking
 
 
 def verify_eu_portfolio_instruments(eu_pf_with_chf_instr):
-    ranking = compute_instrument_rank_for_non_swiss_clients(eu_pf_with_chf_instr)
+    ranking = compute_instrument_ranks(eu_pf_with_chf_instr, ch_cl=False)
     print("Ranking of EU portfolio is", ranking, "and to high for new investments")
     return ranking
 
