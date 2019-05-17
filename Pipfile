@@ -6,9 +6,10 @@ verify_ssl = true
 [dev-packages]
 pytest = "*"
 sphinx = "*"
+coverage = "*"
+pdsp2019 = {editable = true,path = "."}
 
 [packages]
-pdsp2019 = {editable = true,path = "."}
 
 [requires]
 python_version = "3.6"
