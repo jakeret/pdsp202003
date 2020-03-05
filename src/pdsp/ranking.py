@@ -2,10 +2,10 @@ from enum import Enum
 
 
 class CurrencyRating(Enum):
+    OTHER = 1
     USD = 7
     EUR = 6
     GDP = 5
-    CHF = 1
     RATING_NON_SWISS = 100
 
 
@@ -25,8 +25,15 @@ def lookup_instrument_rating(instrument):
     if is_ignored(instrument) or is_expired(instrument):
         instrument_rating = 0
     else:
-        instrument_rating = CurrencyRating[instrument["currency"]].value
+        instrument_rating = get_rating_for(instrument["currency"])
     return instrument_rating
+
+
+def get_rating_for(instrument_currency):
+    try:
+        return CurrencyRating[instrument_currency].value
+    except KeyError:
+        return CurrencyRating.OTHER.value
 
 
 def is_ignored(instrument):
@@ -38,7 +45,7 @@ def is_expired(instrument):
 
 
 def is_restricted(portfolio):
-    result = is_foreign_mandator(portfolio) and is_non_swiss_portfolio(portfolio)
+    result = is_foreign_mandator(portfolio) and not is_swiss_portfolio(portfolio)
 
     # if not restricted then set the prechecked flag
     if result == False:
@@ -47,8 +54,8 @@ def is_restricted(portfolio):
     return result
 
 
-def is_non_swiss_portfolio(portfolio):
-    return portfolio["currency"] != "CHF"
+def is_swiss_portfolio(portfolio):
+    return portfolio["currency"] is "CHF"
 
 
 def is_foreign_mandator(portfolio):
