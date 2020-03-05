@@ -1,8 +1,8 @@
-========
-pdsp2019
-========
+====
+pdsp
+====
 
-This is the documentation of **pdsp2019**.
+This is the documentation of **pdsp**.
 
 .. note::
 
