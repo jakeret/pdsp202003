@@ -2,11 +2,12 @@ from enum import Enum
 
 
 class CurrencyRating(Enum):
+    OTHER = 1
     USD = 7
     EUR = 6
     GDP = 5
-    CHF = 1
     RATING_NON_SWISS = 100
+
 
 def compute_instrument_ranks(instruments, ch_cl=False):
     rating = 0
@@ -21,13 +22,19 @@ def compute_instrument_ranks(instruments, ch_cl=False):
 
                 # skip all the expired instruments
                 if not instrument["expired"]:
-
-                    rating += CurrencyRating[instrument["currency"]].value
+                    rating += get_rating_for(instrument["currency"])
 
     else:
         rating = len(instruments) * CurrencyRating.RATING_NON_SWISS.value
 
     return rating
+
+
+def get_rating_for(instrument_currency):
+    try:
+        return CurrencyRating[instrument_currency].value
+    except KeyError:
+        return CurrencyRating.OTHER.value
 
 
 def is_restricted(portfolio):
