@@ -1,4 +1,4 @@
-from pdsp2019.ranking import *
+from pdsp.ranking import *
 
 
 def verify_eligibility():
