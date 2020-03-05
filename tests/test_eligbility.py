@@ -1,4 +1,4 @@
-from pdsp2019 import eligibility
+from pdsp import eligibility
 
 
 class TestEligibility:

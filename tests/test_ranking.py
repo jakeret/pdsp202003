@@ -1,4 +1,4 @@
-from pdsp2019 import ranking
+from pdsp import ranking
 
 
 class TestComputeInstrumentRanks:
